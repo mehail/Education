@@ -1,6 +1,6 @@
 package by.gstu.fais.artyugin.education.service.algorithmization;
 
-import by.gstu.fais.artyugin.education.service.util.BigDecimalService;
+import by.gstu.fais.artyugin.education.service.util.decimal.BigDecimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

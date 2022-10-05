@@ -50,8 +50,8 @@ public class AlgorithmizationService {
      * @param n параметр y
      * @return результирующее значение
      */
-    public String laboratoryWork3(int m, int n) {
-        return laboratoryWork3.calculate(m, n);
+    public String laboratoryWork3(int m, int nMinValue, int nMaxValue, int step) {
+        return laboratoryWork3.calculate(m, nMinValue, nMaxValue, step);
     }
 
 

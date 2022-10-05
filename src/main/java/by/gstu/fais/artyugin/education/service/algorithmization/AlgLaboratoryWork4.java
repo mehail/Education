@@ -1,7 +1,7 @@
 package by.gstu.fais.artyugin.education.service.algorithmization;
 
 import by.gstu.fais.artyugin.education.exception.CalculateException;
-import by.gstu.fais.artyugin.education.service.util.BigDecimalService;
+import by.gstu.fais.artyugin.education.service.util.decimal.BigDecimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class AlgLaboratoryWork4 {
 
     private static final String FORMAT_ERROR_MESSAGE = "Введенное значение не соответствует указанному шаблону ввода";
-    private static final String ARITHMETIC_ERROR_MESSAGE = "Введенное значение приводит к арифметическим ошибкам";
+    private static final String ARITHMETIC_ERROR_MESSAGE = "Арифметическая ошибка";
 
     private final BigDecimalService bigDecimalService;
 

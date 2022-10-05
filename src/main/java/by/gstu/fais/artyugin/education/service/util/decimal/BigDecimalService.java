@@ -1,10 +1,8 @@
-package by.gstu.fais.artyugin.education.service.util;
+package by.gstu.fais.artyugin.education.service.util.decimal;
 
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 
 /**
  * Сервис обработки дробных значений
@@ -13,17 +11,14 @@ import java.math.RoundingMode;
  * @since 04.10.2022
  */
 @Service
-public class BigDecimalService {
+public interface BigDecimalService {
 
     /**
      * Преобразует дробное число в BigDecimal
      *
      * @param value дробное число
      */
-    public BigDecimal toBigDecimal(double value) {
-
-        return toBigDecimal(Double.toString(value));
-    }
+    BigDecimal toBigDecimal(double value);
 
 
     /**
@@ -31,10 +26,7 @@ public class BigDecimalService {
      *
      * @param value дробное число в строковом представлении
      */
-    public BigDecimal toBigDecimal(String value) {
-
-        return new BigDecimal(value).setScale(2, RoundingMode.HALF_EVEN);
-    }
+    BigDecimal toBigDecimal(String value);
 
 
     /**
@@ -44,9 +36,24 @@ public class BigDecimalService {
      * @param divisor   делитель
      * @return частное
      */
-    public BigDecimal divide(BigDecimal divisible, BigDecimal divisor) {
+    BigDecimal divide(BigDecimal divisible, BigDecimal divisor);
 
-        return divisible.divide(divisor, MathContext.DECIMAL64);
-    }
+
+    /**
+     * Округление значения с заданной точностью
+     *
+     * @param value округляемое значение
+     * @return округленное значение
+     */
+    BigDecimal scale(BigDecimal value);
+
+
+    /**
+     * Преобразует числовое значение к заданному формату
+     *
+     * @param value числовое значение
+     * @return числовое значение в строковом представлении
+     */
+    String toStringFormat(BigDecimal value);
 
 }

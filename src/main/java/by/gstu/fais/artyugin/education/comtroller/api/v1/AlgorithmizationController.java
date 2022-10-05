@@ -61,10 +61,14 @@ public class AlgorithmizationController {
             summary = "Лабораторная работа №3",
             description = "Программирование циклических структур"
     )
-    public ResponseEntity<String> laboratoryWork3(@Parameter(description = "Параметр M") @RequestParam int m,
-                                                  @Parameter(description = "Параметр N") @RequestParam int n) {
+    public ResponseEntity<String> laboratoryWork3(
+            @Parameter(description = "Параметр M") @RequestParam int m,
+            @Parameter(description = "Параметр N") @RequestParam int nMinValue,
+            @Parameter(description = "Параметр N") @RequestParam int nMaxValue,
+            @Parameter(description = "Параметр N") @RequestParam int step
+    ) {
 
-        return ResponseEntity.ok(service.laboratoryWork3(m, n));
+        return ResponseEntity.ok(service.laboratoryWork3(m, nMinValue, nMaxValue, step));
     }
 
 
