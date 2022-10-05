@@ -1,0 +1,21 @@
+package by.gstu.fais.artyugin.education.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+/**
+ * Обработчик кастомных исключений
+ *
+ * @author Mikhail Artyugin
+ * @since 05.10.2022
+ */
+@org.springframework.web.bind.annotation.ControllerAdvice
+public class ControllerAdvice {
+
+    @ExceptionHandler(CalculateException.class)
+    public ResponseEntity<String> handleException(CalculateException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+}

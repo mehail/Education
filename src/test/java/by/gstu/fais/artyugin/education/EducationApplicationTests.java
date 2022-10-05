@@ -1,4 +1,4 @@
-package com.example.education;
+package by.gstu.fais.artyugin.education;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
