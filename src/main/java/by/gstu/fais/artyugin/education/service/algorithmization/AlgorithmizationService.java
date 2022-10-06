@@ -73,7 +73,7 @@ public class AlgorithmizationService {
      * @param numbers параметр x
      * @return результирующее значение
      */
-    public String laboratoryWork4(double[] numbers) {
+    public String laboratoryWork4(int[] numbers) {
         return laboratoryWork4.calculate(numbers);
     }
 
@@ -124,7 +124,7 @@ public class AlgorithmizationService {
 
 
     /**
-     * Лабораторная работа 7: подсчитать количество слов и после каждого поставить запятую
+     * Лабораторная работа 7: подсчитывает количество слов и после каждого поставить запятую
      *
      * @param inputString введенная строка
      * @return {@link AlgLab7Response}

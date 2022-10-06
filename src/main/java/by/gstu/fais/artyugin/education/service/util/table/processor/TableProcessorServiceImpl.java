@@ -24,10 +24,9 @@ public class TableProcessorServiceImpl implements TableProcessorService {
 
 
     /**
-     * Преобразует матрицу значений к табличному виду в строковом представлении
+     * {@inheritDoc}
      *
      * @param data матрица значений
-     * @return значения в табличном виде в строковом представлении
      */
     public String toTable(List<List<String>> data) {
 

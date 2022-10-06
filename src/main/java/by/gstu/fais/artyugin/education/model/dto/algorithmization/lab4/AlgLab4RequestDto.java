@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AlgLab4RequestDto {
-    private double[] numbers;
+    private int[] numbers;
 }

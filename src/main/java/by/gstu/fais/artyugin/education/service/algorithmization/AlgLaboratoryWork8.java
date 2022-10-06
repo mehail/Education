@@ -46,7 +46,7 @@ public class AlgLaboratoryWork8 {
 
 
     /**
-     * Пишет и вычитывает занчения из файлов
+     * Пишет и вычитывает значения из файлов
      *
      * @param inputValues вводимые строковые значения
      * @return {@link AlgLab8Response}

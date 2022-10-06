@@ -31,7 +31,7 @@ public class AlgLaboratoryWork4 {
      * @param numbers числовая последовательность
      * @return результирующее значение
      */
-    public String calculate(double[] numbers) {
+    public String calculate(int[] numbers) {
         try {
             double[] result = fillArray(numbers);
 
@@ -47,18 +47,18 @@ public class AlgLaboratoryWork4 {
     /**
      * Получение массива результирующих значений на основе введенной строки
      *
-     * @param bDoubles массив дробных чисел
+     * @param ints массив дробных чисел
      * @return результирующий массив
      */
-    private double[] fillArray(double[] bDoubles) {
-        double[] aDoubles = new double[bDoubles.length];
+    private double[] fillArray(int[] ints) {
+        double[] aDoubles = new double[ints.length];
 
-        for (int i = 0; i < bDoubles.length; i++) {
+        for (int i = 0; i < ints.length; i++) {
             int index = i == 0
-                    ? bDoubles.length - 1
+                    ? ints.length - 1
                     : i - 1;
 
-            aDoubles[i] = calculateNewValue(bDoubles[i], bDoubles[index]);
+            aDoubles[i] = calculateNewValue(ints[i], ints[index]);
         }
 
         return aDoubles;
@@ -72,7 +72,7 @@ public class AlgLaboratoryWork4 {
      * @param b1 второе опорное значение
      * @return результирующее значение
      */
-    private double calculateNewValue(double b0, double b1) {
+    private double calculateNewValue(int b0, int b1) {
         BigDecimal b0bD = bigDecimalService.toBigDecimal(b0);
         BigDecimal b1bD = bigDecimalService.toBigDecimal(b1);
 

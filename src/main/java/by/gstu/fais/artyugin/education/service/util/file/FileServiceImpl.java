@@ -19,10 +19,9 @@ import java.util.List;
 public class FileServiceImpl implements FileService {
 
     /**
-     * Чтение из файла
+     * {@inheritDoc}
      *
      * @param filePath полный путь к файлу, включая его имя
-     * @return список строк
      */
     @Override
     @SneakyThrows
@@ -35,7 +34,7 @@ public class FileServiceImpl implements FileService {
 
 
     /**
-     * Запись в файл
+     * {@inheritDoc}
      *
      * @param data     записываемые данные
      * @param filePath директория файл
@@ -53,9 +52,7 @@ public class FileServiceImpl implements FileService {
 
 
     /**
-     * Получение текущей директории проекта
-     *
-     * @return директория проекта
+     * {@inheritDoc}
      */
     @Override
     public String getProjectDir() {
@@ -64,7 +61,7 @@ public class FileServiceImpl implements FileService {
 
 
     /**
-     * Создает структуру каталогов при их отсутствии
+     * {@inheritDoc}
      *
      * @param path структура каталогов
      */

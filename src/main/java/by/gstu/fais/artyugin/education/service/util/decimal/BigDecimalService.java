@@ -17,6 +17,7 @@ public interface BigDecimalService {
      * Преобразует дробное число в BigDecimal
      *
      * @param value дробное число
+     * @return {@link BigDecimal}
      */
     BigDecimal toBigDecimal(double value);
 
@@ -25,6 +26,7 @@ public interface BigDecimalService {
      * Преобразует дробное значение в строковом представлении в BigDecimal
      *
      * @param value дробное число в строковом представлении
+     * @return {@link BigDecimal}
      */
     BigDecimal toBigDecimal(String value);
 

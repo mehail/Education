@@ -19,7 +19,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,71 +43,71 @@ public class AlgorithmizationController {
 
     @PostMapping("/1")
     @Operation(
-            summary = "Лабораторная работа №1",
-            description = "Изучение основных понятий и приёмов работы со средой разработки." +
-                    "Программирование задач, содержащих алгоритмы линейной структуры"
+            summary = "Лабораторная работа №1. Программирование задач, содержащих алгоритмы линейной структуры",
+            description = "Вычисление значения с линейной логикой"
     )
-    public ResponseEntity<String> laboratoryWork1(
+    public String laboratoryWork1(
             @Parameter(description = "Параметр x") @RequestParam int x,
             @Parameter(description = "Параметр y") @RequestParam int y
     ) {
 
-        return ResponseEntity.ok(String.valueOf(service.laboratoryWork1(x, y)));
+        return String.valueOf(service.laboratoryWork1(x, y));
     }
 
 
     @PostMapping("/2")
     @Operation(
-            summary = "Лабораторная работа №2",
-            description = "Программирование задач, содержащих алгоритмы разветвляющихся структур"
+            summary = "Лабораторная работа №2. Программирование задач, содержащих алгоритмы разветвляющихся структур",
+            description = "Вычисление значения с логикой условного ветвления"
     )
-    public ResponseEntity<String> laboratoryWork2(
+    public String laboratoryWork2(
             @Parameter(description = "Параметр x") @RequestParam int x,
             @Parameter(description = "Параметр y") @RequestParam int y
     ) {
 
-        return ResponseEntity.ok(String.valueOf(service.laboratoryWork2(x, y)));
+        return String.valueOf(service.laboratoryWork2(x, y));
     }
 
 
     @PostMapping("/3")
     @Operation(
-            summary = "Лабораторная работа №3",
-            description = "Программирование циклических структур"
+            summary = "Лабораторная работа №3. Программирование циклических структур",
+            description = "Вычисление значения с использованием циклов."
     )
-    public ResponseEntity<String> laboratoryWork3(
-            @Parameter(description = "Параметр m") @RequestParam int m,
-            @Parameter(description = "Параметр nMinValue") @RequestParam int nMinValue,
-            @Parameter(description = "Параметр nMaxValue") @RequestParam int nMaxValue,
-            @Parameter(description = "Параметр step") @RequestParam int step
+    public String laboratoryWork3(
+            @Parameter(description = "Параметр m, nMinValue >= m > 0") @RequestParam int m,
+            @Parameter(description = "Параметр nMinValue, nMinValue + step > nMaxValue") @RequestParam int nMinValue,
+            @Parameter(description = "Параметр nMaxValue, nMinValue + step > nMaxValue") @RequestParam int nMaxValue,
+            @Parameter(description = "Параметр step, step != 0") @RequestParam int step
     ) {
 
-        return ResponseEntity.ok(service.laboratoryWork3(m, nMinValue, nMaxValue, step));
+        return service.laboratoryWork3(m, nMinValue, nMaxValue, step);
     }
 
 
     @PostMapping("/4")
     @Operation(
-            summary = "Лабораторная работа №4",
-            description = "Программирование задач по работе с одномерными массивами при адресации элементов массива"
+            summary = "Лабораторная работа №4. Программирование задач по работе с одномерными массивами при " +
+                    "адресации элементов массива",
+            description = "Вычисление значения с использованием одномерных массивов"
     )
-    public ResponseEntity<String> laboratoryWork4(
+    public String laboratoryWork4(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "DTO Алгоритмизация. Лабораторной работы 4", required = true,
                     content = @Content(schema = @Schema(implementation = AlgLab4RequestDto.class)))
             @RequestBody AlgLab4RequestDto numbers
     ) {
 
-        return ResponseEntity.ok(service.laboratoryWork4(numbers.getNumbers()));
+        return service.laboratoryWork4(numbers.getNumbers());
     }
 
 
     @PostMapping("/5")
     @Operation(
-            summary = "Лабораторная работа №5",
-            description = "Программирование задач, содержащих в себе пользовательские функции"
+            summary = "Лабораторная работа №5. Программирование задач, содержащих в себе пользовательские функции",
+            description = "Меняет местами максимальный и минимальный элементы массива"
     )
-    public ResponseEntity<AlgLab5ResponseDto> laboratoryWork5(
+    public AlgLab5ResponseDto laboratoryWork5(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "DTO Алгоритмизация. Лабораторной работы 5", required = true,
                     content = @Content(schema = @Schema(implementation = AlgLab5RequestDto.class)))
@@ -118,78 +117,66 @@ public class AlgorithmizationController {
         int[] source = request.getArray();
         int[] swap = service.laboratoryWork5(source);
 
-        return ResponseEntity.ok(new AlgLab5ResponseDto(source, swap));
+        return new AlgLab5ResponseDto(source, swap);
     }
 
 
-    @PostMapping("/6-rectangular-matrix")
+    @PostMapping("/6/rectangular")
     @Operation(
-            summary = "Лабораторная работа №6. Прямоугольная Матрица",
-            description = "Программирование задач по работе с многомерными массивами. Прямоугольная матрица"
+            summary = "Лабораторная работа №6. Программирование задач по работе с многомерными массивами",
+            description = "Находит наибольший и наименьший элементы прямоугольного двумерного массива"
     )
-    public ResponseEntity<AlgLab6RectangularMatrixResponseDto> laboratoryWork6RectangularMatrix(
+    public AlgLab6RectangularMatrixResponseDto laboratoryWork6RectangularMatrix(
             @Parameter(description = "Высота матрицы") @RequestParam int height,
             @Parameter(description = "Ширина матрицы") @RequestParam int width
     ) {
 
         AlgLab6RectangularMatrixResponse response = service.laboratoryWork6RectangularMatrix(height, width);
 
-        return ResponseEntity.ok(
-                new AlgLab6RectangularMatrixResponseDto(
-                        response.getArray(),
-                        response.getMin(),
-                        response.getMax()
-                )
+        return new AlgLab6RectangularMatrixResponseDto(
+                response.getArray(),
+                response.getMin(),
+                response.getMax()
         );
     }
 
 
-    @PostMapping("/6-square-matrix")
+    @PostMapping("/6/square")
     @Operation(
-            summary = "Лабораторная работа №6. Прямоугольная Матрица",
-            description = "Программирование задач по работе с многомерными массивами. Квадратная матрица"
+            summary = "Лабораторная работа №6. Программирование задач по работе с многомерными массивами",
+            description = "Получение значений выше главной диагонали квадратной матрицы"
     )
-    public ResponseEntity<AlgLab6SquareMatrixResponseDto> laboratoryWork6SquareMatrix(
+    public AlgLab6SquareMatrixResponseDto laboratoryWork6SquareMatrix(
             @Parameter(description = "Порядок матрицы") @RequestParam int order
     ) {
 
         AlgLab6SquareMatrixResponse response = service.laboratoryWork6SquareMatrix(order);
 
-        return ResponseEntity.ok(
-                new AlgLab6SquareMatrixResponseDto(
-                        response.getArray(),
-                        response.getCountPositive()
-                )
-        );
+        return new AlgLab6SquareMatrixResponseDto(response.getArray(), response.getCountPositive());
     }
 
 
     @PostMapping("/7")
     @Operation(
-            summary = "Лабораторная работа №7",
+            summary = "Лабораторная работа №7. Обработка символьной информации",
             description = "Подсчитать количество слов и после каждого поставить запятую"
     )
-    public ResponseEntity<AlgLab7ResponseDto> laboratoryWork6SquareMatrix(
+    public AlgLab7ResponseDto laboratoryWork6SquareMatrix(
             @Parameter(description = "Обрабатываемая строка") @RequestParam String inputString
     ) {
 
         AlgLab7Response response = service.laboratoryWork7(inputString);
 
-        return ResponseEntity.ok(
-                new AlgLab7ResponseDto(
-                        response.getCountWords(),
-                        response.getChangedString()
-                )
-        );
+        return new AlgLab7ResponseDto(response.getCountWords(), response.getChangedString());
     }
 
 
     @PostMapping("/8")
     @Operation(
-            summary = "Лабораторная работа №8",
-            description = "Написание программ с использованием файлов"
+            summary = "Лабораторная работа №8. Написание программ с использованием файлов",
+            description = "Пишет и вычитывает значения из файлов"
     )
-    public ResponseEntity<AlgLab8ResponseDto> laboratoryWork8(
+    public AlgLab8ResponseDto laboratoryWork8(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "DTO Алгоритмизация. Лабораторной работы 8", required = true,
                     content = @Content(schema = @Schema(implementation = AlgLab8RequestDto.class)))
@@ -198,7 +185,7 @@ public class AlgorithmizationController {
 
         AlgLab8Response response = service.laboratoryWork8(request.getStrings());
 
-        return ResponseEntity.ok(new AlgLab8ResponseDto(response.getFirstFileValues(), response.getSecondFileValues()));
+        return new AlgLab8ResponseDto(response.getFirstFileValues(), response.getSecondFileValues());
     }
 
 }

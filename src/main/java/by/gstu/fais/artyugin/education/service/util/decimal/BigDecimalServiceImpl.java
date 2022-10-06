@@ -13,13 +13,14 @@ import java.math.RoundingMode;
  * @since 04.10.2022
  */
 @Service
-public class BigDecimalServiceImpl implements BigDecimalService{
+public class BigDecimalServiceImpl implements BigDecimalService {
 
     /**
-     * Преобразует дробное число в BigDecimal
+     * {@inheritDoc}
      *
      * @param value дробное число
      */
+    @Override
     public BigDecimal toBigDecimal(double value) {
 
         return toBigDecimal(Double.toString(value));
@@ -27,10 +28,11 @@ public class BigDecimalServiceImpl implements BigDecimalService{
 
 
     /**
-     * Преобразует дробное значение в строковом представлении в BigDecimal
+     * {@inheritDoc}
      *
      * @param value дробное число в строковом представлении
      */
+    @Override
     public BigDecimal toBigDecimal(String value) {
 
         return new BigDecimal(value).setScale(2, RoundingMode.HALF_EVEN);
@@ -38,12 +40,12 @@ public class BigDecimalServiceImpl implements BigDecimalService{
 
 
     /**
-     * Делит одно значение на другое с заданной точностью
+     * {@inheritDoc}
      *
      * @param divisible делимое
      * @param divisor   делитель
-     * @return частное
      */
+    @Override
     public BigDecimal divide(BigDecimal divisible, BigDecimal divisor) {
 
         return divisible.divide(divisor, MathContext.DECIMAL64);
@@ -51,11 +53,11 @@ public class BigDecimalServiceImpl implements BigDecimalService{
 
 
     /**
-     * Округление значения с заданной точностью
+     * {@inheritDoc}
      *
      * @param value округляемое значение
-     * @return округленное значение
      */
+    @Override
     public BigDecimal scale(BigDecimal value) {
 
         return value.setScale(2, RoundingMode.HALF_EVEN);
@@ -63,11 +65,11 @@ public class BigDecimalServiceImpl implements BigDecimalService{
 
 
     /**
-     * Преобразует числовое значение к заданному формату
+     * {@inheritDoc}
      *
      * @param value числовое значение
-     * @return числовое значение в строковом представлении
      */
+    @Override
     public String toStringFormat(BigDecimal value) {
         return scale(value).toPlainString();
     }
