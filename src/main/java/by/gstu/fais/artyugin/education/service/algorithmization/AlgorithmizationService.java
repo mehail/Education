@@ -19,9 +19,10 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork2 laboratoryWork2;
     private final AlgLaboratoryWork3 laboratoryWork3;
     private final AlgLaboratoryWork4 laboratoryWork4;
+    private final AlgLaboratoryWork5 laboratoryWork5;
 
     /**
-     * Лабораторная работа 1: вычисление значения с линейной логикой
+     * Лабораторная работа 1: вычислить значение с линейной логикой
      *
      * @param x параметр x
      * @param y параметр y
@@ -32,7 +33,7 @@ public class AlgorithmizationService {
     }
 
     /**
-     * Лабораторная работа 2: вычисление значения с логикой условного ветвления
+     * Лабораторная работа 2: вычислить значение с логикой условного ветвления
      *
      * @param x параметр x
      * @param y параметр y
@@ -44,10 +45,12 @@ public class AlgorithmizationService {
 
 
     /**
-     * Лабораторная работа 3: вычисление значения с использованием циклов
+     * Лабораторная работа 3: вычислить значение с использованием циклов
      *
-     * @param m параметр x
-     * @param n параметр y
+     * @param m         параметр x
+     * @param nMinValue параметр y
+     * @param nMaxValue параметр y
+     * @param step      параметр y
      * @return результирующее значение
      */
     public String laboratoryWork3(int m, int nMinValue, int nMaxValue, int step) {
@@ -56,13 +59,24 @@ public class AlgorithmizationService {
 
 
     /**
-     * Лабораторная работа 4: вычисление значения с использованием одномерных массивов
+     * Лабораторная работа 4: вычислить значение с использованием одномерных массивов
      *
      * @param numbers параметр x
      * @return результирующее значение
      */
     public String laboratoryWork4(double[] numbers) {
         return laboratoryWork4.calculate(numbers);
+    }
+
+
+    /**
+     * Лабораторная работа 5: поменять местами максимальный и минимальный элементы массива
+     *
+     * @param source исходный массив
+     * @return измененный массив
+     */
+    public int[] laboratoryWork5(int[] source) {
+        return laboratoryWork5.swap(source);
     }
 
 }

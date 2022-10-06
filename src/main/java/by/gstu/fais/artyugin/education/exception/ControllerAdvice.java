@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerAdvice {
 
     @ExceptionHandler(CalculateException.class)
-    public ResponseEntity<String> handleException(CalculateException e) {
+    public ResponseEntity<String> handleCalculateException(CalculateException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

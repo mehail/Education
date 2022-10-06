@@ -1,6 +1,8 @@
 package by.gstu.fais.artyugin.education.comtroller.api.v1;
 
-import by.gstu.fais.artyugin.education.model.dto.algorithmization.AlgLab4Dto;
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab4.AlgLab4RequestDto;
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5RequestDto;
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5ResponseDto;
 import by.gstu.fais.artyugin.education.service.algorithmization.AlgorithmizationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -37,8 +39,8 @@ public class AlgorithmizationController {
             description = "Изучение основных понятий и приёмов работы со средой разработки." +
                     "Программирование задач, содержащих алгоритмы линейной структуры"
     )
-    public ResponseEntity<String> laboratoryWork1(@Parameter(description = "Параметр X") @RequestParam int x,
-                                                  @Parameter(description = "Параметр Y") @RequestParam int y) {
+    public ResponseEntity<String> laboratoryWork1(@Parameter(description = "Параметр x") @RequestParam int x,
+                                                  @Parameter(description = "Параметр y") @RequestParam int y) {
 
         return ResponseEntity.ok(String.valueOf(service.laboratoryWork1(x, y)));
     }
@@ -49,8 +51,8 @@ public class AlgorithmizationController {
             summary = "Лабораторная работа №2",
             description = "Программирование задач, содержащих алгоритмы разветвляющихся структур"
     )
-    public ResponseEntity<String> laboratoryWork2(@Parameter(description = "Параметр X") @RequestParam int x,
-                                                  @Parameter(description = "Параметр Y") @RequestParam int y) {
+    public ResponseEntity<String> laboratoryWork2(@Parameter(description = "Параметр x") @RequestParam int x,
+                                                  @Parameter(description = "Параметр y") @RequestParam int y) {
 
         return ResponseEntity.ok(String.valueOf(service.laboratoryWork2(x, y)));
     }
@@ -62,10 +64,10 @@ public class AlgorithmizationController {
             description = "Программирование циклических структур"
     )
     public ResponseEntity<String> laboratoryWork3(
-            @Parameter(description = "Параметр M") @RequestParam int m,
-            @Parameter(description = "Параметр N") @RequestParam int nMinValue,
-            @Parameter(description = "Параметр N") @RequestParam int nMaxValue,
-            @Parameter(description = "Параметр N") @RequestParam int step
+            @Parameter(description = "Параметр m") @RequestParam int m,
+            @Parameter(description = "Параметр nMinValue") @RequestParam int nMinValue,
+            @Parameter(description = "Параметр nMaxValue") @RequestParam int nMaxValue,
+            @Parameter(description = "Параметр step") @RequestParam int step
     ) {
 
         return ResponseEntity.ok(service.laboratoryWork3(m, nMinValue, nMaxValue, step));
@@ -80,11 +82,30 @@ public class AlgorithmizationController {
     public ResponseEntity<String> laboratoryWork4(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "DTO Алгоритмизация. Лабораторной работы 4", required = true,
-                    content = @Content(schema = @Schema(implementation = AlgLab4Dto.class))
+                    content = @Content(schema = @Schema(implementation = AlgLab4RequestDto.class))
             )
-            @RequestBody AlgLab4Dto numbers) {
+            @RequestBody AlgLab4RequestDto numbers) {
 
         return ResponseEntity.ok(service.laboratoryWork4(numbers.getNumbers()));
+    }
+
+
+    @PostMapping("/5")
+    @Operation(
+            summary = "Лабораторная работа №5",
+            description = "Программирование задач, содержащих в себе пользовательские функции"
+    )
+    public ResponseEntity<AlgLab5ResponseDto> laboratoryWork5(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "DTO Алгоритмизация. Лабораторной работы 5", required = true,
+                    content = @Content(schema = @Schema(implementation = AlgLab5RequestDto.class))
+            )
+            @RequestBody AlgLab5RequestDto request) {
+
+        int[] source = request.getArray();
+        int[] swap = service.laboratoryWork5(source);
+
+        return ResponseEntity.ok(new AlgLab5ResponseDto(source, swap));
     }
 
 }

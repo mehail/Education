@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.model.dto.algorithmization;
+package by.gstu.fais.artyugin.education.model.dto.algorithmization.lab4;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlgLab4Dto {
+public class AlgLab4RequestDto {
     private double[] numbers;
 }
