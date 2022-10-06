@@ -6,9 +6,12 @@ import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5Re
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab6.AlgLab6RectangularMatrixResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab6.AlgLab6SquareMatrixResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab7.AlgLab7ResponseDto;
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab8.AlgLab8RequestDto;
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab8.AlgLab8ResponseDto;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab8.AlgLab8Response;
 import by.gstu.fais.artyugin.education.service.algorithmization.AlgorithmizationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -140,6 +143,7 @@ public class AlgorithmizationController {
         );
     }
 
+
     @PostMapping("/6-square-matrix")
     @Operation(
             summary = "Лабораторная работа №6. Прямоугольная Матрица",
@@ -177,6 +181,24 @@ public class AlgorithmizationController {
                         response.getChangedString()
                 )
         );
+    }
+
+
+    @PostMapping("/8")
+    @Operation(
+            summary = "Лабораторная работа №8",
+            description = "Написание программ с использованием файлов"
+    )
+    public ResponseEntity<AlgLab8ResponseDto> laboratoryWork8(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "DTO Алгоритмизация. Лабораторной работы 8", required = true,
+                    content = @Content(schema = @Schema(implementation = AlgLab8RequestDto.class)))
+            @RequestBody AlgLab8RequestDto request
+    ) {
+
+        AlgLab8Response response = service.laboratoryWork8(request.getStrings());
+
+        return ResponseEntity.ok(new AlgLab8ResponseDto(response.getFirstFileValues(), response.getSecondFileValues()));
     }
 
 }

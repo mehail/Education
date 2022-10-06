@@ -3,6 +3,7 @@ package by.gstu.fais.artyugin.education.service.algorithmization;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab8.AlgLab8Response;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork5 laboratoryWork5;
     private final AlgLaboratoryWork6 laboratoryWork6;
     private final AlgLaboratoryWork7 laboratoryWork7;
+    private final AlgLaboratoryWork8 laboratoryWork8;
 
     /**
      * Лабораторная работа 1: вычислить значение с линейной логикой
@@ -130,6 +132,16 @@ public class AlgorithmizationService {
     public AlgLab7Response laboratoryWork7(String inputString) {
 
         return laboratoryWork7.process(inputString);
+    }
+
+    /**
+     * Лабораторная работа 8: работа с файлами
+     *
+     * @param strings массив строк
+     * @return {@link AlgLab8Response}
+     */
+    public AlgLab8Response laboratoryWork8(List<String> strings) {
+        return laboratoryWork8.process(strings);
     }
 
 }
