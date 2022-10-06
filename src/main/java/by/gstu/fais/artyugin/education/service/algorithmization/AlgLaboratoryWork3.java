@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 
 /**
  * Лабораторная работа 3
+ * <p>
  * Программирование циклических структур
  *
  * @author Mikhail Artyugin

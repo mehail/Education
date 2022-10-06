@@ -8,6 +8,7 @@ import static java.lang.Math.sqrt;
 
 /**
  * Лабораторная работа 2
+ * <p>
  * Программирование задач, содержащих алгоритмы разветвляющихся структур
  *
  * @author Mikhail Artyugin

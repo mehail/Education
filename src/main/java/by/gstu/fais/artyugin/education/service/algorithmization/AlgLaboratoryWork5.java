@@ -10,6 +10,7 @@ import static java.util.Objects.isNull;
 
 /**
  * Лабораторная работа 5
+ * <p>
  * Программирование задач, содержащих в себе пользовательские функции.
  * Поменять местами максимальный и минимальный элементы массива. Все элементы массива разные.
  *
@@ -33,7 +34,7 @@ public class AlgLaboratoryWork5 {
      * @param sourceArray исходный массив
      * @return измененный массив
      */
-    public int[] swap(int[] sourceArray) {
+    public int[] swapMinMaxElements(int[] sourceArray) {
 
         if (isIncorrectArray(sourceArray))
             throw new IllegalArgumentException(String.format(ERROR_MESSAGE, MAX_ARRAY_LENGTH));

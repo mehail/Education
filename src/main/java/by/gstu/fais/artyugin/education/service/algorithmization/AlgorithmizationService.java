@@ -1,7 +1,11 @@
 package by.gstu.fais.artyugin.education.service.algorithmization;
 
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Сервис логики лабораторных работ по предмету
@@ -20,6 +24,7 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork3 laboratoryWork3;
     private final AlgLaboratoryWork4 laboratoryWork4;
     private final AlgLaboratoryWork5 laboratoryWork5;
+    private final AlgLaboratoryWork6 laboratoryWork6;
 
     /**
      * Лабораторная работа 1: вычислить значение с линейной логикой
@@ -76,7 +81,43 @@ public class AlgorithmizationService {
      * @return измененный массив
      */
     public int[] laboratoryWork5(int[] source) {
-        return laboratoryWork5.swap(source);
+        return laboratoryWork5.swapMinMaxElements(source);
+    }
+
+
+    /**
+     * Лабораторная работа 6: найти наибольший и наименьший элементы двумерного массива
+     *
+     * @param height высота матрицы
+     * @param width  ширина матрицы
+     * @return {@link AlgLab6RectangularMatrixResponse}
+     */
+    public AlgLab6RectangularMatrixResponse laboratoryWork6RectangularMatrix(int height, int width) {
+
+        int[][] array = laboratoryWork6.getRandomArray(height, width);
+
+        int minArrayValue = laboratoryWork6.getMinArrayValue(array);
+        int maxArrayValue = laboratoryWork6.getMaxMatrixValue(array);
+
+        return new AlgLab6RectangularMatrixResponse(array, minArrayValue, maxArrayValue);
+    }
+
+
+    /**
+     * Лабораторная работа 6: подсчитать количество положительных чисел, лежащих выше главной диагонали
+     *
+     * @param order порядок матрицы
+     * @return {@link AlgLab6SquareMatrixResponse}
+     */
+    public AlgLab6SquareMatrixResponse laboratoryWork6SquareMatrix(int order) {
+
+        int[][] array = laboratoryWork6.getRandomArray(order, order);
+
+        List<Integer> valueAboveMainDiagonal = laboratoryWork6.getValueAboveMainDiagonal(array);
+
+        int countPositive = laboratoryWork6.getCountPositive(valueAboveMainDiagonal);
+
+        return new AlgLab6SquareMatrixResponse(array, countPositive);
     }
 
 }
