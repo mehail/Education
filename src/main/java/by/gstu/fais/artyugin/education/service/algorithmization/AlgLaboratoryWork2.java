@@ -1,5 +1,6 @@
 package by.gstu.fais.artyugin.education.service.algorithmization;
 
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab2.AlgLab2Response;
 import org.springframework.stereotype.Service;
 
 import static java.lang.Math.abs;
@@ -22,10 +23,15 @@ public class AlgLaboratoryWork2 {
      *
      * @param x параметр x
      * @param y параметр y
-     * @return результирующее значение
+     * @return {@link AlgLab2Response}
      */
-    public double calculate(int x, int y) {
-        return calculateFirstAddendum(x, y) + calculateSecondAddendum(x, y);
+    public AlgLab2Response calculate(int x, int y) {
+        int condition = x * y;
+
+        String formula = getFormula(condition);
+        double result = calculateFirstAddendum(x, y) + calculateSecondAddendum(x, y, condition);
+
+        return new AlgLab2Response(formula, result);
     }
 
 
@@ -44,23 +50,40 @@ public class AlgLaboratoryWork2 {
     /**
      * Вычисление второго слагаемого с учетом логики ветвления
      *
-     * @param x параметр x
-     * @param y параметр y
+     * @param x         параметр x
+     * @param y         параметр y
+     * @param condition условие выбора
      * @return результирующее значение
      */
-    private double calculateSecondAddendum(int x, int y) {
-        int condition = x * y;
+    private double calculateSecondAddendum(int x, int y, int condition) {
 
         if (condition > 0) {
-            //a = (x + y)^2 - sqrt(x * y)
             return -1 * sqrt((x * y));
         } else if (condition < 0) {
-            //a = (x + y)^2 + sqrt(abs(x * y))
             return sqrt(abs(x * y));
         } else {
-            //a = (x + y)^2 + 1
             return 1;
         }
+
+    }
+
+
+    /**
+     * Получение строкового представления формулы
+     *
+     * @param condition условие выбора
+     * @return строковое представления формулы
+     */
+    private String getFormula(int condition) {
+
+        if (condition > 0) {
+            return "a = (x + y)^2 - sqrt(x * y)";
+        } else if (condition < 0) {
+            return "a = (x + y)^2 + sqrt(abs(x * y))";
+        } else {
+            return "a = (x + y)^2 + 1";
+        }
+
     }
 
 }

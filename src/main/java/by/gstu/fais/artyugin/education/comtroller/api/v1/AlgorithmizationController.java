@@ -1,5 +1,6 @@
 package by.gstu.fais.artyugin.education.comtroller.api.v1;
 
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab2.AlgLab2ResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab4.AlgLab4RequestDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5RequestDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5ResponseDto;
@@ -8,6 +9,7 @@ import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab6.AlgLab6Sq
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab7.AlgLab7ResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab8.AlgLab8RequestDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab8.AlgLab8ResponseDto;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab2.AlgLab2Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
@@ -60,12 +62,14 @@ public class AlgorithmizationController {
             summary = "Лабораторная работа №2. Программирование задач, содержащих алгоритмы разветвляющихся структур",
             description = "Вычисление значения с логикой условного ветвления"
     )
-    public String laboratoryWork2(
+    public AlgLab2ResponseDto laboratoryWork2(
             @Parameter(description = "Параметр x") @RequestParam int x,
             @Parameter(description = "Параметр y") @RequestParam int y
     ) {
 
-        return String.valueOf(service.laboratoryWork2(x, y));
+        AlgLab2Response result = service.laboratoryWork2(x, y);
+
+        return new AlgLab2ResponseDto(result.getFormula(), result.getResult());
     }
 
 

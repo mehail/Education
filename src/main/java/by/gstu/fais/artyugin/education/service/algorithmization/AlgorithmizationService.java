@@ -1,5 +1,6 @@
 package by.gstu.fais.artyugin.education.service.algorithmization;
 
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab2.AlgLab2Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
@@ -48,7 +49,7 @@ public class AlgorithmizationService {
      * @param y параметр y
      * @return результирующее значение
      */
-    public double laboratoryWork2(int x, int y) {
+    public AlgLab2Response laboratoryWork2(int x, int y) {
         return laboratoryWork2.calculate(x, y);
     }
 
