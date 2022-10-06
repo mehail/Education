@@ -2,6 +2,7 @@ package by.gstu.fais.artyugin.education.service.algorithmization;
 
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork4 laboratoryWork4;
     private final AlgLaboratoryWork5 laboratoryWork5;
     private final AlgLaboratoryWork6 laboratoryWork6;
+    private final AlgLaboratoryWork7 laboratoryWork7;
 
     /**
      * Лабораторная работа 1: вычислить значение с линейной логикой
@@ -112,12 +114,22 @@ public class AlgorithmizationService {
     public AlgLab6SquareMatrixResponse laboratoryWork6SquareMatrix(int order) {
 
         int[][] array = laboratoryWork6.getRandomArray(order, order);
-
         List<Integer> valueAboveMainDiagonal = laboratoryWork6.getValueAboveMainDiagonal(array);
-
         int countPositive = laboratoryWork6.getCountPositive(valueAboveMainDiagonal);
 
         return new AlgLab6SquareMatrixResponse(array, countPositive);
+    }
+
+
+    /**
+     * Лабораторная работа 7: подсчитать количество слов и после каждого поставить запятую
+     *
+     * @param inputString введенная строка
+     * @return {@link AlgLab7Response}
+     */
+    public AlgLab7Response laboratoryWork7(String inputString) {
+
+        return laboratoryWork7.process(inputString);
     }
 
 }

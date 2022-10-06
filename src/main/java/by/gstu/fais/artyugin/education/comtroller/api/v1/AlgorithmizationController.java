@@ -5,8 +5,10 @@ import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5Re
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5ResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab6.AlgLab6RectangularMatrixResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab6.AlgLab6SquareMatrixResponseDto;
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab7.AlgLab7ResponseDto;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
 import by.gstu.fais.artyugin.education.service.algorithmization.AlgorithmizationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -153,6 +155,26 @@ public class AlgorithmizationController {
                 new AlgLab6SquareMatrixResponseDto(
                         response.getArray(),
                         response.getCountPositive()
+                )
+        );
+    }
+
+
+    @PostMapping("/7")
+    @Operation(
+            summary = "Лабораторная работа №7",
+            description = "Подсчитать количество слов и после каждого поставить запятую"
+    )
+    public ResponseEntity<AlgLab7ResponseDto> laboratoryWork6SquareMatrix(
+            @Parameter(description = "Обрабатываемая строка") @RequestParam String inputString
+    ) {
+
+        AlgLab7Response response = service.laboratoryWork7(inputString);
+
+        return ResponseEntity.ok(
+                new AlgLab7ResponseDto(
+                        response.getCountWords(),
+                        response.getChangedString()
                 )
         );
     }
