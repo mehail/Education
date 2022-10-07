@@ -81,7 +81,9 @@ public class AlgLaboratoryWork4 {
 
         BigDecimal divisor = bigDecimalService.divide(b0bD, b1bD);
 
-        return bigDecimalService.divide(BigDecimal.ONE, divisor).doubleValue();
+        BigDecimal result = bigDecimalService.divide(BigDecimal.ONE, divisor);
+
+        return bigDecimalService.scale(result).doubleValue();
     }
 
 }
