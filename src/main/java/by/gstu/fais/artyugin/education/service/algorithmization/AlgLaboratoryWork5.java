@@ -99,6 +99,7 @@ public class AlgLaboratoryWork5 {
         return swapArray;
     }
 
+
     /**
      * Проверяет, что все элемента массива уникальны
      *

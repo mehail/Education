@@ -36,8 +36,17 @@ public class AlgLaboratoryWork3 {
 
     private static final String ARITHMETIC_ERROR_MESSAGE = "Арифметическая ошибка";
 
+
+    /**
+     * Сервис обработки дробных значений
+     */
     private final BigDecimalService bigDecimalService;
+
+    /**
+     * Сервис преобразования матрицы значений к табличному виду в строковом представлении
+     */
     private final TableProcessorService tableProcessorService;
+
 
     /**
      * Вычисление значения с использованием циклов
@@ -81,6 +90,7 @@ public class AlgLaboratoryWork3 {
 
         return matrix;
     }
+
 
     /**
      * Вычисление атомарных значений

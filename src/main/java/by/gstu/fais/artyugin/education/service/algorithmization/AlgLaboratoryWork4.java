@@ -23,6 +23,9 @@ public class AlgLaboratoryWork4 {
     private static final String FORMAT_ERROR_MESSAGE = "Введенное значение не соответствует указанному шаблону ввода";
     private static final String ARITHMETIC_ERROR_MESSAGE = "Арифметическая ошибка";
 
+    /**
+     * Сервис обработки дробных значений
+     */
     private final BigDecimalService bigDecimalService;
 
     /**

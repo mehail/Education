@@ -61,7 +61,7 @@ public class AlgLaboratoryWork8 {
 
 
     /**
-     * Запись и вычитывание первого файла
+     * Запись и вычитывание первого файла со всеми значениями
      *
      * @param strings записываемые строки
      * @return список записанных строк
@@ -74,6 +74,12 @@ public class AlgLaboratoryWork8 {
     }
 
 
+    /**
+     * Запись второго файла с числовыми значениями
+     *
+     * @param strings записываемые строки
+     * @return числовые значения
+     */
     private List<String> createSecondFile(List<String> strings) {
 
         List<String> numbers = strings.stream()

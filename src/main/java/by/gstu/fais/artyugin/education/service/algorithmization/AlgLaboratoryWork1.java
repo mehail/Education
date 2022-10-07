@@ -26,7 +26,11 @@ import static java.lang.Math.sqrt;
 @AllArgsConstructor
 public class AlgLaboratoryWork1 {
 
+    /**
+     * Сервис обработки дробных значений
+     */
     private final BigDecimalService bigDecimalService;
+
 
     /**
      * Вычисление значения с линейной логикой

@@ -9,7 +9,7 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 /**
- * Описание класса
+ * Сервис формирование табличных представлений
  *
  * @author Mikhail Artyugin
  * @since 05.10.2022
