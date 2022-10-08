@@ -195,7 +195,7 @@ public class AlgorithmizationController {
 
     @PostMapping("/exam/1")
     @Operation(
-            summary = "Экзаменационное задание №1",
+            summary = "Экзаменационное задание №1. Работа с двумерными массивами",
             description = "В каждом столбце матрицы найти максимальный элемент и вычислить произведение этих элементов"
     )
     public String alg1(
@@ -204,6 +204,19 @@ public class AlgorithmizationController {
     ) {
 
         return service.exam1(height, width);
+    }
+
+
+    @PostMapping("/exam/2")
+    @Operation(
+            summary = "Экзаменационное задание №2. Работа со строками",
+            description = "Удалить символы '?', стоящие после 'a', и подсчитать общее количество 'Р', 'О'"
+    )
+    public String alg1(
+            @Parameter(description = "Вводимая строка") @RequestParam String inputString
+    ) {
+
+        return service.exam2(inputString);
     }
 
 }

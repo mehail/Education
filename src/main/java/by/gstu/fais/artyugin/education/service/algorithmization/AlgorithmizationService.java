@@ -6,6 +6,7 @@ import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab8.AlgLab8Response;
 import by.gstu.fais.artyugin.education.service.algorithmization.exam.AlgExam1;
+import by.gstu.fais.artyugin.education.service.algorithmization.exam.AlgExam2;
 import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork1;
 import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork2;
 import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork3;
@@ -40,6 +41,7 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork7 laboratoryWork7;
     private final AlgLaboratoryWork8 laboratoryWork8;
     private final AlgExam1 algExam1;
+    private final AlgExam2 algExam2;
 
 
     /**
@@ -160,7 +162,7 @@ public class AlgorithmizationService {
 
 
     /**
-     * Экзаменационное задание 1
+     * Экзаменационное задание 1.
      * В каждом столбце матрицы найти максимальный элемент и вычислить произведение этих элементов
      *
      * @param height высота матрицы
@@ -169,6 +171,18 @@ public class AlgorithmizationService {
      */
     public String exam1(int height, int width) {
         return algExam1.process(height, width);
+    }
+
+
+    /**
+     * Экзаменационное задание 2.
+     * Удаляет символы '?', стоящие после 'a', и подсчитать общее количество 'Р', 'О'
+     *
+     * @param inputString вводимая строка
+     * @return строковое представление решения
+     */
+    public String exam2(String inputString) {
+        return algExam2.process(inputString);
     }
 
 }
