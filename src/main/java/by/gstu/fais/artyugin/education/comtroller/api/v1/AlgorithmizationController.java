@@ -1,5 +1,6 @@
 package by.gstu.fais.artyugin.education.comtroller.api.v1;
 
+import by.gstu.fais.artyugin.education.model.dto.algorithmization.exam3.AlgExam3ResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab2.AlgLab2ResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab4.AlgLab4RequestDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab5.AlgLab5RequestDto;
@@ -9,6 +10,7 @@ import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab6.AlgLab6Sq
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab7.AlgLab7ResponseDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab8.AlgLab8RequestDto;
 import by.gstu.fais.artyugin.education.model.dto.algorithmization.lab8.AlgLab8ResponseDto;
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.exam3.AlgExam3Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab2.AlgLab2Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
@@ -212,11 +214,30 @@ public class AlgorithmizationController {
             summary = "Экзаменационное задание №2. Работа со строками",
             description = "Удалить символы '?', стоящие после 'a', и подсчитать общее количество 'Р', 'О'"
     )
-    public String alg1(
+    public String alg2(
             @Parameter(description = "Вводимая строка") @RequestParam String inputString
     ) {
 
         return service.exam2(inputString);
+    }
+
+    @PostMapping("/exam/3")
+    @Operation(
+            summary = "Экзаменационное задание №3. Работа со структурами и файлами",
+            description = "Вывести информацию о правонарушениях заданного вида в новый текстовый файл в " +
+                    "порядке возрастания суммы штрафа. Определить максимальный штраф среди нарушителей " +
+                    "моложе указанного возраста"
+    )
+    public AlgExam3ResponseDto alg3(
+            @Parameter(description = "Минимальный год рождения правонарушителя") @RequestParam int year
+    ) {
+
+        AlgExam3Response response = service.exam3(year);
+
+        return new AlgExam3ResponseDto(
+                response.getAllOffense(),
+                response.getYoungViolators()
+        );
     }
 
 }

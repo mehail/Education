@@ -1,13 +1,18 @@
 package by.gstu.fais.artyugin.education.service.util.file;
 
 import lombok.SneakyThrows;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Сервис работы с файлами
@@ -30,6 +35,23 @@ public class FileServiceImpl implements FileService {
         Path path = Paths.get(filePath);
 
         return Files.readAllLines(path);
+    }
+
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param relativePath относительный путь
+     * @return
+     */
+    @SneakyThrows
+    public List<String> readByRelativePath(String relativePath) {
+
+        try (InputStream inp = new ClassPathResource(relativePath).getInputStream()) {
+            return new BufferedReader(new InputStreamReader(inp))
+                    .lines().collect(Collectors.toList());
+        }
+
     }
 
 

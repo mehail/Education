@@ -20,6 +20,15 @@ public interface FileService {
 
 
     /**
+     * Чтение файла по относительному пути
+     *
+     * @param relativePath относительный путь
+     * @return содержимое файла
+     */
+    List<String> readByRelativePath(String relativePath);
+
+
+    /**
      * Запись в файл
      *
      * @param data     записываемые данные

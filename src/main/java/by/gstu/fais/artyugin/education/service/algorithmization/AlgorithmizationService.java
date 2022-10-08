@@ -1,5 +1,6 @@
 package by.gstu.fais.artyugin.education.service.algorithmization;
 
+import by.gstu.fais.artyugin.education.model.entity.algorithmization.exam3.AlgExam3Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab2.AlgLab2Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6RectangularMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
@@ -7,6 +8,7 @@ import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab8.AlgLab8Response;
 import by.gstu.fais.artyugin.education.service.algorithmization.exam.AlgExam1;
 import by.gstu.fais.artyugin.education.service.algorithmization.exam.AlgExam2;
+import by.gstu.fais.artyugin.education.service.algorithmization.exam.AlgExam3;
 import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork1;
 import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork2;
 import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork3;
@@ -42,6 +44,7 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork8 laboratoryWork8;
     private final AlgExam1 algExam1;
     private final AlgExam2 algExam2;
+    private final AlgExam3 algExam3;
 
 
     /**
@@ -157,6 +160,7 @@ public class AlgorithmizationService {
      * @return {@link AlgLab8Response}
      */
     public AlgLab8Response laboratoryWork8(List<String> strings) {
+
         return laboratoryWork8.process(strings);
     }
 
@@ -170,6 +174,7 @@ public class AlgorithmizationService {
      * @return строковое представление решения
      */
     public String exam1(int height, int width) {
+
         return algExam1.process(height, width);
     }
 
@@ -182,7 +187,21 @@ public class AlgorithmizationService {
      * @return строковое представление решения
      */
     public String exam2(String inputString) {
+
         return algExam2.process(inputString);
+    }
+
+
+    /**
+     * Экзаменационное задание 3.
+     * Работа со структурами и файлами
+     *
+     * @param year минимальный год рождения правонарушителя
+     * @return {@link AlgExam3Response}
+     */
+    public AlgExam3Response exam3(int year) {
+
+        return algExam3.process(year);
     }
 
 }
