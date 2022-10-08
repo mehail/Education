@@ -42,6 +42,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/stage1/algorithmization")
 public class AlgorithmizationController {
 
+    /**
+     * Сервис логики лабораторных работ по предмету
+     * "Основы алгоритмизации и программирования на языках высокого уровня"
+     * Вариант 1
+     */
     private final AlgorithmizationService service;
 
 
@@ -220,6 +225,7 @@ public class AlgorithmizationController {
 
         return service.exam2(inputString);
     }
+
 
     @PostMapping("/exam/3")
     @Operation(
