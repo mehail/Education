@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.algorithmization;
+package by.gstu.fais.artyugin.education.service.algorithmization.lab;
 
 import org.springframework.stereotype.Service;
 
@@ -88,25 +88,25 @@ public class AlgLaboratoryWork6 {
     }
 
 
-    /**
-     * Генерация матрицы со случайными значениями
-     *
-     * @param height высота матрицы
-     * @param width  ширина матрицы
-     * @return матрицы
-     */
-    public int[][] getRandomArray(int height, int width) {
+        /**
+         * Генерация матрицы со случайными значениями
+         *
+         * @param height высота матрицы
+         * @param width  ширина матрицы
+         * @return матрицы
+         */
+        public int[][] getRandomArray(int height, int width) {
 
-        int[][] matrix = new int[height][width];
+            int[][] matrix = new int[height][width];
 
-        for (int[] row : matrix) {
-            for (int i = 0; i < row.length; i++) {
-                row[i] = getRandomValue();
+            for (int[] row : matrix) {
+                for (int i = 0; i < row.length; i++) {
+                    row[i] = getRandomValue();
+                }
             }
-        }
 
-        return matrix;
-    }
+            return matrix;
+        }
 
 
     /**

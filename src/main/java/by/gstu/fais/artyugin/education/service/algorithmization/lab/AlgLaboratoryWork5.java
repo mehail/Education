@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.algorithmization;
+package by.gstu.fais.artyugin.education.service.algorithmization.lab;
 
 import org.springframework.stereotype.Service;
 

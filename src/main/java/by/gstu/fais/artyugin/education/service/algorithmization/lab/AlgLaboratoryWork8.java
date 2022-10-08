@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.algorithmization;
+package by.gstu.fais.artyugin.education.service.algorithmization.lab;
 
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab8.AlgLab8Response;
 import by.gstu.fais.artyugin.education.service.util.file.FileService;

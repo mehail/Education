@@ -43,7 +43,7 @@ public class AlgorithmizationController {
     private final AlgorithmizationService service;
 
 
-    @PostMapping("/1")
+    @PostMapping("/lab/1")
     @Operation(
             summary = "Лабораторная работа №1. Программирование задач, содержащих алгоритмы линейной структуры",
             description = "Вычисление значения с линейной логикой"
@@ -57,7 +57,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/2")
+    @PostMapping("/lab/2")
     @Operation(
             summary = "Лабораторная работа №2. Программирование задач, содержащих алгоритмы разветвляющихся структур",
             description = "Вычисление значения с логикой условного ветвления"
@@ -73,7 +73,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/3")
+    @PostMapping("/lab/3")
     @Operation(
             summary = "Лабораторная работа №3. Программирование циклических структур",
             description = "Вычисление значения с использованием циклов."
@@ -89,7 +89,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/4")
+    @PostMapping("/lab/4")
     @Operation(
             summary = "Лабораторная работа №4. Программирование задач по работе с одномерными массивами при " +
                     "адресации элементов массива",
@@ -106,7 +106,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/5")
+    @PostMapping("/lab/5")
     @Operation(
             summary = "Лабораторная работа №5. Программирование задач, содержащих в себе пользовательские функции",
             description = "Меняет местами максимальный и минимальный элементы массива"
@@ -125,7 +125,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/6/rectangular")
+    @PostMapping("/lab/6/rectangular")
     @Operation(
             summary = "Лабораторная работа №6. Программирование задач по работе с многомерными массивами",
             description = "Находит наибольший и наименьший элементы прямоугольного двумерного массива"
@@ -145,7 +145,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/6/square")
+    @PostMapping("/lab/6/square")
     @Operation(
             summary = "Лабораторная работа №6. Программирование задач по работе с многомерными массивами",
             description = "Получение значений выше главной диагонали квадратной матрицы"
@@ -160,7 +160,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/7")
+    @PostMapping("/lab/7")
     @Operation(
             summary = "Лабораторная работа №7. Обработка символьной информации",
             description = "Подсчитать количество слов и после каждого поставить запятую"
@@ -175,7 +175,7 @@ public class AlgorithmizationController {
     }
 
 
-    @PostMapping("/8")
+    @PostMapping("/lab/8")
     @Operation(
             summary = "Лабораторная работа №8. Написание программ с использованием файлов",
             description = "Пишет и вычитывает значения из файлов"
@@ -190,6 +190,20 @@ public class AlgorithmizationController {
         AlgLab8Response response = service.laboratoryWork8(request.getStrings());
 
         return new AlgLab8ResponseDto(response.getFirstFileValues(), response.getSecondFileValues());
+    }
+
+
+    @PostMapping("/exam/1")
+    @Operation(
+            summary = "Экзаменационное задание №1",
+            description = "В каждом столбце матрицы найти максимальный элемент и вычислить произведение этих элементов"
+    )
+    public String alg1(
+            @Parameter(description = "Высота матрицы") @RequestParam int height,
+            @Parameter(description = "Ширина матрицы") @RequestParam int width
+    ) {
+
+        return service.exam1(height, width);
     }
 
 }

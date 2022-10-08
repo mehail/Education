@@ -5,6 +5,15 @@ import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab6.AlgLab6SquareMatrixResponse;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab7.AlgLab7Response;
 import by.gstu.fais.artyugin.education.model.entity.algorithmization.lab8.AlgLab8Response;
+import by.gstu.fais.artyugin.education.service.algorithmization.exam.AlgExam1;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork1;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork2;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork3;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork4;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork5;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork6;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork7;
+import by.gstu.fais.artyugin.education.service.algorithmization.lab.AlgLaboratoryWork8;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +39,8 @@ public class AlgorithmizationService {
     private final AlgLaboratoryWork6 laboratoryWork6;
     private final AlgLaboratoryWork7 laboratoryWork7;
     private final AlgLaboratoryWork8 laboratoryWork8;
+    private final AlgExam1 algExam1;
+
 
     /**
      * Лабораторная работа 1: вычислить значение с линейной логикой
@@ -41,6 +52,7 @@ public class AlgorithmizationService {
     public double laboratoryWork1(int x, int y) {
         return laboratoryWork1.calculate(x, y);
     }
+
 
     /**
      * Лабораторная работа 2: вычислить значение с логикой условного ветвления
@@ -135,6 +147,7 @@ public class AlgorithmizationService {
         return laboratoryWork7.process(inputString);
     }
 
+
     /**
      * Лабораторная работа 8: работа с файлами
      *
@@ -143,6 +156,19 @@ public class AlgorithmizationService {
      */
     public AlgLab8Response laboratoryWork8(List<String> strings) {
         return laboratoryWork8.process(strings);
+    }
+
+
+    /**
+     * Экзаменационное задание 1
+     * В каждом столбце матрицы найти максимальный элемент и вычислить произведение этих элементов
+     *
+     * @param height высота матрицы
+     * @param width  ширина матрицы
+     * @return строковое представление решения
+     */
+    public String exam1(int height, int width) {
+        return algExam1.process(height, width);
     }
 
 }
