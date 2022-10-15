@@ -2,6 +2,7 @@ package by.gstu.fais.artyugin.education.service.theoretical.basis.lab1;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,9 +20,7 @@ import java.util.stream.Collectors;
 public class ThBasisLaboratoryWork1 {
 
     private static final char START_CHAR = '0';
-    private static final char MAX_DIGIT = 9;
     private static final char NEGATIVE_CHAR = '-';
-    private static final int OFFSET_FROM_NUMBER_TO_CHAR = 7;
     private static final int DECIMAL_FOUNDATION = 10;
     private static final int MIN_FOUNDATION = 2;
     private static final int MAX_FOUNDATION = 36;
@@ -42,22 +41,47 @@ public class ThBasisLaboratoryWork1 {
         if (sourceFoundation == goalFoundation) return input;
 
         boolean isNegative = input.charAt(0) == NEGATIVE_CHAR;
+        String absValue = getAbs(input, isNegative);
 
-        String value = isNegative
-                ? input.substring(1)
-                : input;
+        validateInput(absValue, sourceFoundation);
 
-        validateInput(value, sourceFoundation);
-
-        StringBuilder abs = divisionOnFoundation(
-                toDecimal(value, sourceFoundation),
-                goalFoundation,
+        StringBuilder absResult = divisionOnFoundation(
+                toDecimal(absValue, sourceFoundation),
+                BigInteger.valueOf(goalFoundation),
                 new StringBuilder()
         );
 
-        if (isNegative) abs.insert(0, NEGATIVE_CHAR);
+        return restoreSign(absResult, isNegative);
+    }
 
-        return abs.toString();
+
+    /**
+     * Восстанавливает знак значения
+     *
+     * @param abs        модуль числа
+     * @param isNegative флаг отрицательного хзначения
+     * @return восстановленное значение
+     */
+    private String restoreSign(StringBuilder abs, boolean isNegative) {
+
+        return isNegative
+                ? abs.insert(0, NEGATIVE_CHAR).toString()
+                : abs.toString();
+    }
+
+
+    /**
+     * Возвращает модуль числа
+     *
+     * @param input      число
+     * @param isNegative флаг отрицательного значения
+     * @return модуль числа
+     */
+    private String getAbs(String input, boolean isNegative) {
+
+        return isNegative
+                ? input.substring(1)
+                : input;
     }
 
 
@@ -69,13 +93,12 @@ public class ThBasisLaboratoryWork1 {
      * @param accumulator    промежуточный результат
      * @return результирующее значение
      */
-    private StringBuilder divisionOnFoundation(long number, int goalFoundation, StringBuilder accumulator) {
+    private StringBuilder divisionOnFoundation(BigInteger number, BigInteger goalFoundation, StringBuilder accumulator) {
 
         addRemainderOfDivisions(number, goalFoundation, accumulator);
 
-
-        return number >= goalFoundation
-                ? divisionOnFoundation(number / goalFoundation, goalFoundation, accumulator)
+        return number.compareTo(goalFoundation) >= 0
+                ? divisionOnFoundation(number.divide(goalFoundation), goalFoundation, accumulator)
                 : removeFirstZero(accumulator);
     }
 
@@ -87,17 +110,11 @@ public class ThBasisLaboratoryWork1 {
      * @param goalFoundation основание целевой системы счисления
      * @param accumulator    аккумулятор
      */
-    private void addRemainderOfDivisions(long number, int goalFoundation, StringBuilder accumulator) {
+    private void addRemainderOfDivisions(BigInteger number, BigInteger goalFoundation, StringBuilder accumulator) {
 
-        long l = number % goalFoundation;
-
-        if (l > MAX_DIGIT) {
-            Character character = getAlphabet(goalFoundation).get((int) l);
-            accumulator.insert(0, character);
-        } else {
-            accumulator.insert(0, l);
-        }
-
+        int remainder = number.remainder(goalFoundation).intValue();
+        Character character = getAlphabet(goalFoundation.intValue()).get(remainder);
+        accumulator.insert(0, character);
     }
 
 
@@ -124,7 +141,7 @@ public class ThBasisLaboratoryWork1 {
      * @param foundation основание системы счисления
      * @return десятичное значение
      */
-    private long toDecimal(String value, int foundation) {
+    private BigInteger toDecimal(String value, int foundation) {
 
         List<Integer> charsAsIntegers = charsToIntegers(getCharacters(value));
 
@@ -153,13 +170,18 @@ public class ThBasisLaboratoryWork1 {
      * @param foundation      основание системы счисления
      * @return суммы символов поразрядно
      */
-    private long sumUpRanks(List<Integer> charsAsIntegers, int foundation) {
+    private BigInteger sumUpRanks(List<Integer> charsAsIntegers, int foundation) {
 
-        long result = 0;
+        BigInteger result = BigInteger.ZERO;
 
         for (int i = 0; i < charsAsIntegers.size(); i++) {
             Integer integer = charsAsIntegers.get(charsAsIntegers.size() - 1 - i);
-            result += integer * (long) Math.pow(foundation, i);
+
+            result = result.add(
+                    BigInteger.valueOf(integer).multiply(
+                            BigInteger.valueOf(foundation).pow(i)
+                    )
+            );
         }
 
         return result;
@@ -205,20 +227,6 @@ public class ThBasisLaboratoryWork1 {
 
 
     /**
-     * Получение офсета в зависимости от того, является число символом или десятичным значением [0..9]
-     *
-     * @param i индекс
-     * @return смещение
-     */
-    private int getOffset(int i) {
-
-        return (i < DECIMAL_FOUNDATION)
-                ? i
-                : i + OFFSET_FROM_NUMBER_TO_CHAR;
-    }
-
-
-    /**
      * Преобразует символы в индексы в системе счисления
      *
      * @param chars символы
@@ -234,6 +242,20 @@ public class ThBasisLaboratoryWork1 {
 
 
     /**
+     * Получение офсета в зависимости от того, является число символом или десятичным значением [0..9]
+     *
+     * @param i индекс
+     * @return смещение
+     */
+    private int getOffset(int i) {
+
+        return (i < DECIMAL_FOUNDATION)
+                ? i
+                : i + getOffsetNumberZeroToChar();
+    }
+
+
+    /**
      * Преобразует числовое значение символов в его индекс в системе счисления
      *
      * @param n числовое представление символа
@@ -245,7 +267,18 @@ public class ThBasisLaboratoryWork1 {
 
         return n < START_CHAR + 10
                 ? i
-                : i - OFFSET_FROM_NUMBER_TO_CHAR;
+                : i - getOffsetNumberZeroToChar();
+    }
+
+
+    /**
+     * Получение смещение от 'A' до '9'
+     *
+     * @return смещение
+     */
+    private int getOffsetNumberZeroToChar() {
+
+        return 'A' - '9' - 1;
     }
 
 }

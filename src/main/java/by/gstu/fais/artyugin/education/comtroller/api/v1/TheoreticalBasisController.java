@@ -38,8 +38,8 @@ public class TheoreticalBasisController {
     )
     public String laboratoryWork1(
             @Parameter(description = "Конвертируемое число") @RequestParam String value,
-            @Parameter(description = "Исходная система счисления, max=36") @RequestParam int sourceFoundation,
-            @Parameter(description = "Целевая система счисления, max=36") @RequestParam int goalFoundation
+            @Parameter(description = "Исходная система счисления, [2, 36]") @RequestParam int sourceFoundation,
+            @Parameter(description = "Целевая система счисления, [2, 36]") @RequestParam int goalFoundation
     ) {
 
         return service.convertByFoundation(value, sourceFoundation, goalFoundation);
