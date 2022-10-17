@@ -19,13 +19,38 @@ import java.util.stream.Collectors;
 @Service
 public class ThBasisLaboratoryWork1 {
 
-    private static final char START_CHAR = '0';
     private static final char NEGATIVE_CHAR = '-';
-    private static final int DECIMAL_FOUNDATION = 10;
+    private static final char START_NUMBER_CHAR = '0';
+    private static final char END_NUMBER_CHAR = '9';
+    private static final char START_NON_NUMBER_CHAR = 'A';
+    private static final char END_NON_NUMBER_CHAR = 'Z';
     private static final int MIN_FOUNDATION = 2;
-    private static final int MAX_FOUNDATION = 36;
-    private static final String INCORRECT_INPUT = "Основание не должно быть в диапазоне [%d, %d]";
+    private static final int DECIMAL_FOUNDATION = 10;
     private static final String INCORRECT_CHAR = "Некорректный ввод, для основания %d доступны символы: %s";
+    private static final String INCORRECT_INPUT = "Основание не должно быть в диапазоне [%s, %s]";
+
+    /**
+     * Смещение между символами '9' и 'A'
+     */
+    private final int offsetNumberZeroToChar;
+
+    /**
+     *
+     */
+    private final int maxFoundation;
+
+    /**
+     * Алфавит допустимых символов
+     * [0..9, A..Z]
+     */
+    private final List<Character> fullAlphabet;
+
+
+    public ThBasisLaboratoryWork1() {
+        this.offsetNumberZeroToChar = START_NON_NUMBER_CHAR - END_NUMBER_CHAR - 1;
+        this.maxFoundation = END_NON_NUMBER_CHAR - START_NUMBER_CHAR - offsetNumberZeroToChar + 1;
+        this.fullAlphabet = getAlphabet();
+    }
 
 
     /**
@@ -46,7 +71,7 @@ public class ThBasisLaboratoryWork1 {
         validateInput(absValue, sourceFoundation);
 
         StringBuilder absResult = divisionOnFoundation(
-                toDecimal(absValue, sourceFoundation),
+                charToDecimal(absValue, sourceFoundation),
                 BigInteger.valueOf(goalFoundation),
                 new StringBuilder()
         );
@@ -59,7 +84,7 @@ public class ThBasisLaboratoryWork1 {
      * Восстанавливает знак значения
      *
      * @param abs        модуль числа
-     * @param isNegative флаг отрицательного хзначения
+     * @param isNegative флаг отрицательного значения
      * @return восстановленное значение
      */
     private String restoreSign(StringBuilder abs, boolean isNegative) {
@@ -113,7 +138,7 @@ public class ThBasisLaboratoryWork1 {
     private void addRemainderOfDivisions(BigInteger number, BigInteger goalFoundation, StringBuilder accumulator) {
 
         int remainder = number.remainder(goalFoundation).intValue();
-        Character character = getAlphabet(goalFoundation.intValue()).get(remainder);
+        Character character = fullAlphabet.get(remainder);
         accumulator.insert(0, character);
     }
 
@@ -128,24 +153,9 @@ public class ThBasisLaboratoryWork1 {
 
         int firstChIndex = 0;
 
-        return value.charAt(firstChIndex) == START_CHAR
+        return value.charAt(firstChIndex) == START_NUMBER_CHAR
                 ? value.deleteCharAt(firstChIndex)
                 : value;
-    }
-
-
-    /**
-     * Преобразование строки в десятичное значение
-     *
-     * @param value      число в строковом представлении
-     * @param foundation основание системы счисления
-     * @return десятичное значение
-     */
-    private BigInteger toDecimal(String value, int foundation) {
-
-        List<Integer> charsAsIntegers = charsToIntegers(getCharacters(value));
-
-        return sumUpRanks(charsAsIntegers, foundation);
     }
 
 
@@ -196,11 +206,11 @@ public class ThBasisLaboratoryWork1 {
      */
     private void validateInput(String value, int foundation) {
 
-        if (foundation < MIN_FOUNDATION || foundation > MAX_FOUNDATION) {
-            throw new IllegalArgumentException(String.format(INCORRECT_INPUT, MIN_FOUNDATION, MAX_FOUNDATION));
+        if (foundation < MIN_FOUNDATION || foundation > maxFoundation) {
+            throw new IllegalArgumentException(String.format(INCORRECT_INPUT, MIN_FOUNDATION, maxFoundation));
         }
 
-        List<Character> alphabet = getAlphabet(foundation);
+        List<Character> alphabet = fullAlphabet.subList(0, foundation);
         List<Character> chars = getCharacters(value);
         if (!new HashSet<>(alphabet).containsAll(chars))
             throw new IllegalArgumentException(String.format(INCORRECT_CHAR, foundation, alphabet));
@@ -210,15 +220,14 @@ public class ThBasisLaboratoryWork1 {
     /**
      * Получение перечня допустимых значений для основания системы счисления
      *
-     * @param foundation основание системы счисления
      * @return набор допустимых значений
      */
-    private List<Character> getAlphabet(int foundation) {
+    private List<Character> getAlphabet() {
 
         List<Character> result = new ArrayList<>();
 
-        for (int i = 0; i < foundation; i++) {
-            char ch = (char) (START_CHAR + getOffset(i));
+        for (int i = 0; i < maxFoundation; i++) {
+            char ch = (char) (START_NUMBER_CHAR + getOffset(i));
             result.add(ch);
         }
 
@@ -227,17 +236,20 @@ public class ThBasisLaboratoryWork1 {
 
 
     /**
-     * Преобразует символы в индексы в системе счисления
+     * Преобразование строки в десятичное значение
      *
-     * @param chars символы
-     * @return индексы символов в системе счисления
+     * @param value      число в строковом представлении
+     * @param foundation основание системы счисления
+     * @return десятичное значение
      */
-    private List<Integer> charsToIntegers(List<Character> chars) {
+    private BigInteger charToDecimal(String value, int foundation) {
 
-        return chars.stream()
+        List<Integer> charsAsIntegers = getCharacters(value).stream()
                 .map(Integer::valueOf)
                 .map(this::charToInt)
                 .collect(Collectors.toList());
+
+        return sumUpRanks(charsAsIntegers, foundation);
     }
 
 
@@ -249,9 +261,9 @@ public class ThBasisLaboratoryWork1 {
      */
     private int getOffset(int i) {
 
-        return (i < DECIMAL_FOUNDATION)
-                ? i
-                : i + getOffsetNumberZeroToChar();
+        return i >= DECIMAL_FOUNDATION
+                ? i + offsetNumberZeroToChar
+                : i;
     }
 
 
@@ -263,22 +275,11 @@ public class ThBasisLaboratoryWork1 {
      */
     private int charToInt(int n) {
 
-        int i = n - START_CHAR;
+        int i = n - START_NUMBER_CHAR;
 
-        return n < START_CHAR + 10
-                ? i
-                : i - getOffsetNumberZeroToChar();
-    }
-
-
-    /**
-     * Получение смещение от 'A' до '9'
-     *
-     * @return смещение
-     */
-    private int getOffsetNumberZeroToChar() {
-
-        return 'A' - '9' - 1;
+        return n >= START_NUMBER_CHAR + DECIMAL_FOUNDATION
+                ? i - offsetNumberZeroToChar
+                : i;
     }
 
 }
