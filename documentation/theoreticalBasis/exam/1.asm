@@ -1,53 +1,26 @@
-name "2"
+name "task 5.a"
 
-org 100h ; directive make tiny com file.
+org 100h            ; directive make tiny com file.
 
-mov ax, k1
-add ax, k2
-mov divisible, ax
+mov ax, k1  
+mov bx, k2
+add ax, bx          ; k1 + k2 
+mov divisible, ax  
 
-mov bx, k3
-sub bx, k4
-mov divider, bx
+mov ax, k3
+mov bx, k4
+sub ax, bx          ; k3 - k4        
 
-div bx
-
-call print_al
+mov bx, ax          
+mov ax, divisible 
+ 
+div bx              ; AX / BX = AX (int), DX (remains)
 
 ret
 
 ; variables:
 divisible dd ?
-divider dd ?
-k1 dd 01h
-k2 dd 07h
-k3 dd 07C5h
-k4 dd 07C2h
-
-
-print_al proc
-    cmp al, 0
-    jne print_al_r
-        push ax
-        mov al, '0'
-        mov ah, 0eh
-        int 10h
-        pop ax
-        ret
-print_al_r:
-    pusha
-    mov ah, 0
-    cmp ax, 0
-    je pn_done
-    mov dl, 10
-    div dl
-    call print_al_r
-    mov al, ah
-    add al, 30h
-    mov ah, 0eh
-    int 10h
-    jmp pn_done
-pn_done:
-    popa
-    ret
-endp
+k1 dd 01h           ; 1
+k2 dd 07h           ; 7
+k3 dd 07C5h         ; 1989
+k4 dd 07C2h         ; 1986
