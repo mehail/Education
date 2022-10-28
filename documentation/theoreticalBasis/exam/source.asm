@@ -1,28 +1,27 @@
-name "task 5.a"
+name "task 5"
 
-org 100h            ; directive make tiny com file.
+org 100h                     ; directive make tiny com file.
 
 ; task 5.a
 mov ax, k1
 mov bx, k2
-add ax, bx          ; k1 + k2
+add ax, bx                   ; k1 + k2
 mov divisible, ax
 
 mov ax, k3
 mov bx, k4
-sub ax, bx          ; k3 - k4
+sub ax, bx                   ; k3 - k4
 
 mov bx, ax
 mov ax, divisible
 
-div bx              ; AX / BX = AX (int), DX (remains)
+div bx                       ; AX / BX = AX (int), DX (remains)
 mov s, ax
 
 ; task 5.b
 mov bx, k1
 and ax, bx
 mov ds:s, ax
-
 
 ret
 
