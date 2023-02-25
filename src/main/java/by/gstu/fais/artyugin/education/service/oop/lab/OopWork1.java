@@ -9,6 +9,8 @@ import java.math.RoundingMode;
 
 /**
  * Лабораторная работа 1
+ * <p>
+ * Программирование линейных алгоритмов
  *
  * @author Mikhail Artyugin
  * @since 25.02.2023
@@ -17,7 +19,7 @@ import java.math.RoundingMode;
 @RequiredArgsConstructor
 public class OopWork1 {
 
-    private static final String ERROR_MESSAGE = "Значение a не может быть равным 0";
+    private static final String ERROR_MESSAGE = "Значение 'a' не может быть равным 0";
 
     private final BigDecimalService bigDecimalService;
 

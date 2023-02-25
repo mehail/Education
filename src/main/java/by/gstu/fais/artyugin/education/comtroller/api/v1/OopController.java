@@ -33,8 +33,8 @@ public class OopController {
 
     @PostMapping("/lab/1")
     @Operation(
-            summary = "Лабораторная работа №1. Создание простого консольного приложения",
-            description = "освоить средства для создания и отладки консольного приложения"
+            summary = "Лабораторная работа №1",
+            description = "Программирование линейных алгоритмов"
     )
     public String laboratoryWork1(
             @Parameter(description = "Число a") @RequestParam Double aValue,
@@ -42,6 +42,20 @@ public class OopController {
     ) {
 
         return service.laboratoryWork1(aValue, xValue);
+    }
+
+
+    @PostMapping("/lab/2")
+    @Operation(
+            summary = "Лабораторная работа №1",
+            description = "Программирование разветвляющихся алгоритмов"
+    )
+    public String laboratoryWork2(
+            @Parameter(description = "Число x") @RequestParam Double xValue,
+            @Parameter(description = "Число z") @RequestParam Double zValue
+    ) {
+
+        return service.laboratoryWork2(xValue, zValue);
     }
 
 }

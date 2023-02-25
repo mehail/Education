@@ -1,6 +1,7 @@
 package by.gstu.fais.artyugin.education.service.oop;
 
 import by.gstu.fais.artyugin.education.service.oop.lab.OopWork1;
+import by.gstu.fais.artyugin.education.service.oop.lab.OopWork2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,16 @@ import org.springframework.stereotype.Service;
 public class OopService {
 
     private final OopWork1 work1;
+    private final OopWork2 work2;
 
     public String laboratoryWork1(double aValue, double xValue) {
 
         return work1.calculate(aValue, xValue);
+    }
+
+    public String laboratoryWork2(double xValue, double zValue) {
+
+        return work2.calculate(xValue, zValue);
     }
 
 }
