@@ -5,6 +5,7 @@ import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 
@@ -41,6 +42,24 @@ public class TableProcessorServiceImpl implements TableProcessorService {
         addBody(data, table);
 
         return table.render();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param head шапка матрицы
+     * @param data матрица значений
+     */
+    @Override
+    public String toTable(List<String> head, List<List<String>> data) {
+
+        List<List<String>> lists = Stream.concat(
+                        Stream.of(head),
+                        data.stream()
+                )
+                .toList();
+
+        return toTable(lists);
     }
 
 

@@ -58,4 +58,19 @@ public class OopController {
         return service.laboratoryWork2(xValue, zValue);
     }
 
+
+    @PostMapping("/lab/3")
+    @Operation(
+            summary = "Лабораторная работа №1",
+            description = "Программирование циклических алгоритмов"
+    )
+    public String laboratoryWork3(
+            @Parameter(description = "Левая граница диапазона") @RequestParam Double leftBorderRange,
+            @Parameter(description = "Правая граница диапазон") @RequestParam Double rightBorderRange,
+            @Parameter(description = "Щаг") @RequestParam Double stepValue
+    ) {
+
+        return service.laboratoryWork3(leftBorderRange, rightBorderRange, stepValue);
+    }
+
 }

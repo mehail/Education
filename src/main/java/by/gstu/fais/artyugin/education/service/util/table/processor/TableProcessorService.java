@@ -18,4 +18,13 @@ public interface TableProcessorService {
      */
     String toTable(List<List<String>> data);
 
+    /**
+     * Преобразует матрицу значений к табличному виду в строковом представлении
+     *
+     * @param head шапка матрицы
+     * @param data матрица значений
+     * @return значения в табличном виде в строковом представлении
+     */
+    String toTable(List<String> head, List<List<String>> data);
+
 }
