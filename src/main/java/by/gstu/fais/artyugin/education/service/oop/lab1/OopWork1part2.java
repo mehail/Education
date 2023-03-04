@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.oop.lab;
+package by.gstu.fais.artyugin.education.service.oop.lab1;
 
 import by.gstu.fais.artyugin.education.service.util.decimal.BigDecimalService;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Лабораторная работа 2
+ * Лабораторная работа 1.2
  * <p>
  * Программирование разветвляющихся алгоритмов
  *
@@ -15,14 +15,14 @@ import java.math.RoundingMode;
  * @since 25.02.2023
  */
 @Service
-public class OopWork2 {
+public class OopWork1part2 {
 
     private final BigDecimal rightBorderRange;
     private final BigDecimal leftBorderRange;
 
     private final BigDecimalService bigDecimalService;
 
-    public OopWork2(BigDecimalService bigDecimalService) {
+    public OopWork1part2(BigDecimalService bigDecimalService) {
         this.bigDecimalService = bigDecimalService;
         this.rightBorderRange = BigDecimal.ZERO;
         this.leftBorderRange = bigDecimalService.toBigDecimal(-5);

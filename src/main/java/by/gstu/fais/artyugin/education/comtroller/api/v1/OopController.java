@@ -73,4 +73,14 @@ public class OopController {
         return service.laboratoryWork3(leftBorderRange, rightBorderRange, stepValue);
     }
 
+
+    @PostMapping("/lab/4")
+    @Operation(
+            summary = "Лабораторная работа №1",
+            description = "Разработка и использование методов класса"
+    )
+    public String laboratoryWork4() {
+
+        return service.laboratoryWork4();
+    }
 }

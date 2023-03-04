@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.oop.lab;
+package by.gstu.fais.artyugin.education.service.oop.lab1;
 
 import by.gstu.fais.artyugin.education.service.util.decimal.BigDecimalService;
 import by.gstu.fais.artyugin.education.service.util.table.processor.TableProcessorService;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Лабораторная работа 3
+ * Лабораторная работа 1.3
  * <p>
  * Программирование циклических алгоритмов
  *
@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 @Service
 @RequiredArgsConstructor
-public class OopWork3 {
+public class OopWork1part3 {
 
     private final BigDecimalService bigDecimalService;
     private final TableProcessorService tableProcessorService;

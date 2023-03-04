@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.oop.lab;
+package by.gstu.fais.artyugin.education.service.oop.lab1;
 
 import by.gstu.fais.artyugin.education.service.util.decimal.BigDecimalService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Лабораторная работа 1
+ * Лабораторная работа 1.1
  * <p>
  * Программирование линейных алгоритмов
  *
@@ -17,7 +17,7 @@ import java.math.RoundingMode;
  */
 @Service
 @RequiredArgsConstructor
-public class OopWork1 {
+public class OopWork1part1 {
 
     private static final String ERROR_MESSAGE = "Значение 'a' не может быть равным 0";
 
