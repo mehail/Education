@@ -4,6 +4,7 @@ import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part1;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part2;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part3;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part4;
+import by.gstu.fais.artyugin.education.service.oop.lab2.OopWork2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,29 +18,36 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OopService {
 
-    private final OopWork1part1 work1;
-    private final OopWork1part2 work2;
-    private final OopWork1part3 work3;
-    private final OopWork1part4 work4;
+    private final OopWork1part1 work1p1;
+    private final OopWork1part2 work1p2;
+    private final OopWork1part3 work1p3;
+    private final OopWork1part4 work1p4;
 
-    public String laboratoryWork1(double aValue, double xValue) {
+    private final OopWork2 work2;
 
-        return work1.calculate(aValue, xValue);
+    public String laboratoryWork1p1(double aValue, double xValue) {
+
+        return work1p1.calculate(aValue, xValue);
     }
 
-    public String laboratoryWork2(double xValue, double zValue) {
+    public String laboratoryWork1p2(double xValue, double zValue) {
 
-        return work2.calculate(xValue, zValue);
+        return work1p2.calculate(xValue, zValue);
     }
 
-    public String laboratoryWork3(double leftBorderRange, double rightBorderRange, double stepValue) {
+    public String laboratoryWork1p3(double leftBorderRange, double rightBorderRange, double stepValue) {
 
-        return work3.calculate(leftBorderRange, rightBorderRange, stepValue);
+        return work1p3.calculate(leftBorderRange, rightBorderRange, stepValue);
     }
 
-    public String laboratoryWork4() {
+    public String laboratoryWork1p4() {
 
-        return work4.calculate();
+        return work1p4.calculate();
+    }
+
+    public String laboratoryWork2() {
+
+        return work2.process();
     }
 
 }
