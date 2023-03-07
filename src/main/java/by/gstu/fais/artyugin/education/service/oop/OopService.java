@@ -5,6 +5,7 @@ import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part2;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part3;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part4;
 import by.gstu.fais.artyugin.education.service.oop.lab2.OopWork2;
+import by.gstu.fais.artyugin.education.service.oop.lab3.OopWork3;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class OopService {
     private final OopWork1part4 work1p4;
 
     private final OopWork2 work2;
+    private final OopWork3 work3;
 
     public String laboratoryWork1p1(double aValue, double xValue) {
 
@@ -48,6 +50,16 @@ public class OopService {
     public String laboratoryWork2() {
 
         return work2.process();
+    }
+
+    public String laboratoryWork3(OopWork3.Arr arr) {
+
+        try {
+            return work3.process(arr);
+        } catch (IndexOutOfBoundsException  e) {
+            return e.getMessage();
+        }
+
     }
 
 }

@@ -1,14 +1,19 @@
 package by.gstu.fais.artyugin.education.comtroller.api.v1;
 
 import by.gstu.fais.artyugin.education.service.oop.OopService;
+import by.gstu.fais.artyugin.education.service.oop.lab3.ArrayHolder;
+import by.gstu.fais.artyugin.education.service.oop.lab3.OopWork3;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 /**
@@ -22,6 +27,9 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping("api/v1/stage2/oop")
 public class OopController {
+
+    record ArrDto(List<Integer> arrayA, List<Integer> arrayB, int index) {
+    }
 
     /**
      * Сервис логики лабораторных работ по предмету
@@ -94,4 +102,23 @@ public class OopController {
 
         return service.laboratoryWork2();
     }
+
+
+    @PostMapping("/lab/3")
+    @Operation(
+            summary = "Лабораторная работа №3",
+            description = "Обработка одномерных массивов"
+    )
+    public String laboratoryWork3(
+            @Parameter(description = "Массивы и заданное число") @RequestBody ArrDto request
+    ) {
+        OopWork3.Arr arr = new OopWork3.Arr(
+                new ArrayHolder(request.arrayA.toArray(new Integer[0])),
+                new ArrayHolder(request.arrayB.toArray(new Integer[0])),
+                request.index
+        );
+
+        return service.laboratoryWork3(arr);
+    }
+
 }
