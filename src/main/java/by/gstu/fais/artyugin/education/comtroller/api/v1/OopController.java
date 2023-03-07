@@ -4,6 +4,8 @@ import by.gstu.fais.artyugin.education.service.oop.OopService;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part1.ArrayHolder;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part1.OopWork3p1;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part2.Group;
+import by.gstu.fais.artyugin.education.service.oop.lab4.Matrix;
+import by.gstu.fais.artyugin.education.service.oop.lab4.OopWork4;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -132,6 +134,18 @@ public class OopController {
             @Parameter(description = "Группа студентов") @RequestBody Group group
     ) {
         return service.laboratoryWork3p2(group);
+    }
+
+
+    @PostMapping("/lab/4")
+    @Operation(
+            summary = "Лабораторная работа №4",
+            description = "Обработка двумерных массивов"
+    )
+    public String laboratoryWork4(
+            @Parameter(description = "Пара  матриц") @RequestBody OopWork4.Pair<Matrix> matrixPair
+    ) {
+        return service.laboratoryWork4(matrixPair);
     }
 
 }

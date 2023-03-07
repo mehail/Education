@@ -8,6 +8,8 @@ import by.gstu.fais.artyugin.education.service.oop.lab2.OopWork2;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part1.OopWork3p1;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part2.Group;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part2.OopWork3p2;
+import by.gstu.fais.artyugin.education.service.oop.lab4.Matrix;
+import by.gstu.fais.artyugin.education.service.oop.lab4.OopWork4;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,8 @@ public class OopService {
 
     private final OopWork3p1 work3p1;
     private final OopWork3p2 work3p2;
+
+    private final OopWork4 work4;
 
     public String laboratoryWork1p1(double aValue, double xValue) {
 
@@ -69,6 +73,11 @@ public class OopService {
     public String laboratoryWork3p2(Group group) {
 
         return work3p2.process(group);
+    }
+
+    public String laboratoryWork4(OopWork4.Pair<Matrix> matrixPair) {
+
+        return work4.process(matrixPair);
     }
 
 }
