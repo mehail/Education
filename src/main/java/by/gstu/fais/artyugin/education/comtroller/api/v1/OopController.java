@@ -1,8 +1,9 @@
 package by.gstu.fais.artyugin.education.comtroller.api.v1;
 
 import by.gstu.fais.artyugin.education.service.oop.OopService;
-import by.gstu.fais.artyugin.education.service.oop.lab3.ArrayHolder;
-import by.gstu.fais.artyugin.education.service.oop.lab3.OopWork3;
+import by.gstu.fais.artyugin.education.service.oop.lab3.part1.ArrayHolder;
+import by.gstu.fais.artyugin.education.service.oop.lab3.part1.OopWork3p1;
+import by.gstu.fais.artyugin.education.service.oop.lab3.part2.Group;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -104,21 +105,33 @@ public class OopController {
     }
 
 
-    @PostMapping("/lab/3")
+    @PostMapping("/lab/3/1")
     @Operation(
-            summary = "Лабораторная работа №3",
+            summary = "Лабораторная работа №3 ч.1",
             description = "Обработка одномерных массивов"
     )
-    public String laboratoryWork3(
+    public String laboratoryWork3p1(
             @Parameter(description = "Массивы и заданное число") @RequestBody ArrDto request
     ) {
-        OopWork3.Arr arr = new OopWork3.Arr(
+        OopWork3p1.Arr arr = new OopWork3p1.Arr(
                 new ArrayHolder(request.arrayA.toArray(new Integer[0])),
                 new ArrayHolder(request.arrayB.toArray(new Integer[0])),
                 request.index
         );
 
-        return service.laboratoryWork3(arr);
+        return service.laboratoryWork3p1(arr);
+    }
+
+
+    @PostMapping("/lab/3/2")
+    @Operation(
+            summary = "Лабораторная работа №3 ч.2",
+            description = "Студенты"
+    )
+    public String laboratoryWork3p2(
+            @Parameter(description = "Группа студентов") @RequestBody Group group
+    ) {
+        return service.laboratoryWork3p2(group);
     }
 
 }

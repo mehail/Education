@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.oop.lab3;
+package by.gstu.fais.artyugin.education.service.oop.lab3.part1;
 
 import org.springframework.stereotype.Service;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
- * Лабораторная работа 3
+ * Лабораторная работа 3 часть 1
  * <p>
  * Обработка одномерных массивов
  *
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @since 25.02.2023
  */
 @Service
-public class OopWork3 {
+public class OopWork3p1 {
 
     public record Arr(ArrayHolder a,
                       ArrayHolder b,

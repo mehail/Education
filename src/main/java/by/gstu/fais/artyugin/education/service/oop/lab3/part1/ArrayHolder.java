@@ -1,4 +1,4 @@
-package by.gstu.fais.artyugin.education.service.oop.lab3;
+package by.gstu.fais.artyugin.education.service.oop.lab3.part1;
 
 import lombok.Getter;
 import lombok.Setter;

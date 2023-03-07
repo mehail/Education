@@ -5,7 +5,9 @@ import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part2;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part3;
 import by.gstu.fais.artyugin.education.service.oop.lab1.OopWork1part4;
 import by.gstu.fais.artyugin.education.service.oop.lab2.OopWork2;
-import by.gstu.fais.artyugin.education.service.oop.lab3.OopWork3;
+import by.gstu.fais.artyugin.education.service.oop.lab3.part1.OopWork3p1;
+import by.gstu.fais.artyugin.education.service.oop.lab3.part2.Group;
+import by.gstu.fais.artyugin.education.service.oop.lab3.part2.OopWork3p2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,9 @@ public class OopService {
     private final OopWork1part4 work1p4;
 
     private final OopWork2 work2;
-    private final OopWork3 work3;
+
+    private final OopWork3p1 work3p1;
+    private final OopWork3p2 work3p2;
 
     public String laboratoryWork1p1(double aValue, double xValue) {
 
@@ -52,14 +56,19 @@ public class OopService {
         return work2.process();
     }
 
-    public String laboratoryWork3(OopWork3.Arr arr) {
+    public String laboratoryWork3p1(OopWork3p1.Arr arr) {
 
         try {
-            return work3.process(arr);
+            return work3p1.process(arr);
         } catch (IndexOutOfBoundsException  e) {
             return e.getMessage();
         }
 
+    }
+
+    public String laboratoryWork3p2(Group group) {
+
+        return work3p2.process(group);
     }
 
 }
