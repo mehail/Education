@@ -10,8 +10,12 @@ import by.gstu.fais.artyugin.education.service.oop.lab3.part2.Group;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part2.OopWork3p2;
 import by.gstu.fais.artyugin.education.service.oop.lab4.Matrix;
 import by.gstu.fais.artyugin.education.service.oop.lab4.OopWork4;
+import by.gstu.fais.artyugin.education.service.oop.lab5.OopWork5;
+import by.gstu.fais.artyugin.education.service.oop.lab5.Polygon;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Описание класса
@@ -34,6 +38,7 @@ public class OopService {
     private final OopWork3p2 work3p2;
 
     private final OopWork4 work4;
+    private final OopWork5 work5;
 
     public String laboratoryWork1p1(double aValue, double xValue) {
 
@@ -78,6 +83,12 @@ public class OopService {
     public String laboratoryWork4(OopWork4.Pair<Matrix> matrixPair) {
 
         return work4.process(matrixPair);
+    }
+
+
+    public String laboratoryWork5(List<Polygon> polygons) {
+
+        return work5.process(polygons);
     }
 
 }

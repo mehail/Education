@@ -6,6 +6,9 @@ import by.gstu.fais.artyugin.education.service.oop.lab3.part1.OopWork3p1;
 import by.gstu.fais.artyugin.education.service.oop.lab3.part2.Group;
 import by.gstu.fais.artyugin.education.service.oop.lab4.Matrix;
 import by.gstu.fais.artyugin.education.service.oop.lab4.OopWork4;
+import by.gstu.fais.artyugin.education.service.oop.lab5.Polygon;
+import by.gstu.fais.artyugin.education.service.oop.lab5.Rectangle;
+import by.gstu.fais.artyugin.education.service.oop.lab5.Triangle;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -146,6 +149,36 @@ public class OopController {
             @Parameter(description = "Пара  матриц") @RequestBody OopWork4.Pair<Matrix> matrixPair
     ) {
         return service.laboratoryWork4(matrixPair);
+    }
+
+
+    @PostMapping("/lab/5")
+    @Operation(
+            summary = "Лабораторная работа №5",
+            description = "Наследование"
+    )
+    public String laboratoryWork5(
+            @Parameter(description = "Многогранники") @RequestBody List<PolygonDto> polygonDtos
+    ) {
+        List<Polygon> polygons = PolygonDto.toPolygons(polygonDtos);
+
+        return service.laboratoryWork5(polygons);
+    }
+
+
+    private record PolygonDto(List<Integer> lengthsSides, Polygon.Colour colour){
+        public static List<Polygon> toPolygons(List<PolygonDto> dtos) {
+            return dtos.stream()
+                    .map(polygon -> {
+                        int size = polygon.lengthsSides.size();
+                        return switch (size) {
+                            case 3 -> new Triangle(polygon.lengthsSides, polygon.colour);
+                            case 4 -> new Rectangle(polygon.lengthsSides, polygon.colour);
+                            default -> throw new IllegalArgumentException("Oops! The number of sides is not correct!");
+                        };
+                    })
+                    .toList();
+        }
     }
 
 }
